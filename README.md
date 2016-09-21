@@ -4,11 +4,11 @@ Run the game with one simple step [CLICK HERE](https://lewiekh.github.io/arcade_
 
 How To Play
 ===============================
-1) control the character to cross the street.
-2) But watch out!! Don't let the bugs get you.
-3) EveryTime you reach the top earn extra points.
-4) But the bugs get faster and faster until they eventually get you.
-5) what is your highest Score?
+1. control the character to cross the street.
+2. But watch out!! Don't let the bugs get you.
+3. EveryTime you reach the top earn extra points.
+4. But the bugs get faster and faster until they eventually get you.
+5. what is your highest Score?
 
 Game Assets
 ===============================
