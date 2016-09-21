@@ -85,15 +85,17 @@ for (var i = 0; i <= 6; i++) {
 //instantiate the player
 var player = new Player(200, 400);
 Player.prototype.handleInput = function(loc) {
+    var TILE_WIDTH = 101,
+        TILE_HEIGHT = 83;
     // Change the player's position based on the user keyboard input
     if (loc == 'up') {
-        this.y -= 50;
+        this.y -= TILE_HEIGHT;
     } else if (loc == 'down') {
-        this.y += 50;
+        this.y += TILE_HEIGHT;
     } else if (loc == 'left') {
-        this.x -= 50;
+        this.x -= TILE_WIDTH;
     } else if (loc == 'right') {
-        this.x += 50;
+        this.x += TILE_WIDTH;
     }
     // Check the position of the player
     if (this.x < 0) {
@@ -153,12 +155,12 @@ Player.prototype.hitDetect = function() {
             this.y < e.y + 40 &&
             this.y + 50 > e.y) {
               this.collided = true;
-              resetAfterCollision();
+              this.resetAfterCollision();
         };
     };
 };
 // delays the player reset function for the "hit" image to display
-function resetAfterCollision() {
+Player.prototype.resetAfterCollision = function() {
     setTimeout(function() {
         player.reset();
     }, 200);
