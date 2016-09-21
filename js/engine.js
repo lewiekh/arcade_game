@@ -13,7 +13,6 @@
  * the canvas' context (ctx) object globally available to make writing app.js
  * a little simpler to work with.
  */
-
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -46,14 +45,14 @@ var Engine = (function(global) {
          * our update function since it may be used for smooth animation.
          */
 
-		// checks for game to end and calls the gameOver function to end the game
-         if (game.gameEnd) {
-                     gameOver();
-                 } else {
+        // checks for game to end and calls the gameOver function to end the game
+        if (game.gameEnd) {
+            gameOver();
+        } else {
 
-        update(dt);
-        render();
-      };
+            update(dt);
+            render();
+        };
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -62,10 +61,17 @@ var Engine = (function(global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
+        //if the player collided the animation is delayed for a fraction of a second until player is reset
+        if (player.collided) {
+            setTimeout(function() {
+                win.requestAnimationFrame(main);
+            }, 200);
+        } else {
+            win.requestAnimationFrame(main);
+        };
 
-         win.requestAnimationFrame(main);
 
-};
+    };
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
      * game loop.
@@ -115,12 +121,12 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/grass-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/stone-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/grass-block.png', // Top row is water
+                'images/stone-block.png', // Row 1 of 3 of stone
+                'images/stone-block.png', // Row 2 of 3 of stone
+                'images/stone-block.png', // Row 3 of 3 of stone
+                'images/stone-block.png', // Row 1 of 2 of grass
+                'images/grass-block.png' // Row 2 of 2 of grass
             ],
             numRows = 6,
             numCols = 5,
@@ -162,12 +168,12 @@ var Engine = (function(global) {
     }
     //draws the game over image and writes Game Over// Ending points on the screen
     function gameOver() {
-      ctx.drawImage(Resources.get("images/winScreen.png"), 0, 0);
-      ctx.textAlign = 'center';
-      ctx.font="50px Georgia";
-      ctx.fillText("Game Over",250,280);
-      ctx.fillText("Points:", 250, 330);
-      ctx.fillText(player.points,250,380);
+        ctx.drawImage(Resources.get("images/winScreen.png"), 0, 0);
+        ctx.textAlign = 'center';
+        ctx.font = "50px Georgia";
+        ctx.fillText("Game Over", 250, 280);
+        ctx.fillText("Points:", 250, 330);
+        ctx.fillText(player.points, 250, 380);
     };
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
