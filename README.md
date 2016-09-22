@@ -1,5 +1,12 @@
 Run The game
 ===============================
+1. Download ALL files on your local machine.
+2. Unzip file.
+3. Open index.html with your favorite browser (chrome, Firefox, Internet Explorer).
+4. Play the game.
+
+Play game online:
+
 Run the game with one simple step [CLICK HERE](https://lewiekh.github.io/arcade_game/).
 
 How To Play
@@ -13,5 +20,3 @@ How To Play
 Game Assets
 ===============================
 ![player](https://raw.githubusercontent.com/lewiekh/arcade_game/master/images/char-boy.png) ![enemy](https://raw.githubusercontent.com/lewiekh/arcade_game/master/images/enemy-bug.png) ![hit](https://raw.githubusercontent.com/lewiekh/arcade_game/master/images/ka-pow.png)
-
-

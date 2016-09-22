@@ -1,6 +1,8 @@
 // Game class to help end the game
 var Game = function() {
-    gameEnd = false;
+    this.gameEnd = false;
+    this.TILE_HEIGHT = 83;
+    this.TILE_WIDTH = 101;
 };
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -56,10 +58,6 @@ var Player = function(x, y) {
     this.collided = false;
 };
 Player.prototype.update = function(dt) {
-    //checks to see if the player reaches the top and runs the win function.
-    if (this.y < 0) {
-        this.win();
-    };
 };
 // Draw the player on the screen
 Player.prototype.render = function() {
@@ -85,17 +83,15 @@ for (var i = 0; i <= 6; i++) {
 //instantiate the player
 var player = new Player(200, 400);
 Player.prototype.handleInput = function(loc) {
-    var TILE_WIDTH = 101,
-        TILE_HEIGHT = 83;
     // Change the player's position based on the user keyboard input
-    if (loc == 'up') {
-        this.y -= TILE_HEIGHT;
-    } else if (loc == 'down') {
-        this.y += TILE_HEIGHT;
-    } else if (loc == 'left') {
-        this.x -= TILE_WIDTH;
-    } else if (loc == 'right') {
-        this.x += TILE_WIDTH;
+    if (loc ==='up') {
+        this.y -= game.TILE_HEIGHT;
+    } else if (loc === 'down') {
+        this.y += game.TILE_HEIGHT;
+    } else if (loc ==='left') {
+        this.x -= game.TILE_WIDTH;
+    } else if (loc === 'right') {
+        this.x += game.TILE_WIDTH;
     }
     // Check the position of the player
     if (this.x < 0) {
@@ -106,7 +102,10 @@ Player.prototype.handleInput = function(loc) {
         this.x = 400;
         //prevent the player from leaving the screen
     } else if (this.y > 400) {
-        this.y = 400
+        this.y = 400;
+        //checks to see if the player reaches the top and runs the win function.
+    } else if(this.y < 0) {
+          this.win();
     };
 };
 //resets the player when the player collids with an enemy
@@ -161,9 +160,7 @@ Player.prototype.hitDetect = function() {
 };
 // delays the player reset function for the "hit" image to display
 Player.prototype.resetAfterCollision = function() {
-    setTimeout(function() {
-        player.reset();
-    }, 200);
+    window.setTimeout(this.reset.bind(this),200);
 };
 // INSTANTIATE the game class
 var game = new Game();
